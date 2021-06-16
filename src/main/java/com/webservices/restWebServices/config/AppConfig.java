@@ -1,6 +1,6 @@
 package com.webservices.restWebServices.config;
 
-import com.webservices.restWebServices.resources.BookResource;
+import com.webservices.restWebServices.resources.BookResourceImpl;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +13,6 @@ public class AppConfig extends ResourceConfig {
 
     @PostConstruct
     private void init() {
-        registerClasses(BookResource.class);
+        registerClasses(BookResourceImpl.class);
     }
 }

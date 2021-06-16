@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.core.Response;
 
 @Component
-public interface BookDao extends JpaRepository<Book, Long> {
+public interface BookRepository extends JpaRepository<Book, Long> {
 
     Book findByIsbn(Long isbn);
 
