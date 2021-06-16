@@ -16,15 +16,15 @@ public class BookResourceImpl implements BookResource{
     private DataSource dataSource;
 
     @Autowired
-    private BookRepository bookDao;
+    private BookRepository bookRepository;
 
     @Override
     public Response addBook(Book book) {
-        Book bookExists = bookDao.findByIsbn(book.getIsbn());
+        Book bookExists = bookRepository.findByIsbn(book.getIsbn());
         if(bookExists != null) {
             return Response.status(Response.Status.CONFLICT).build();
         } else {
-            bookDao.save(book);
+            bookRepository.save(book);
             return Response.ok("Book with ISBN " + book.getIsbn() + " added successfully.").build();
         }
 
@@ -32,24 +32,28 @@ public class BookResourceImpl implements BookResource{
 
     @Override
     public List<Book> getAllBooks() {
-        return bookDao.findAll();
+        return bookRepository.findAll();
     }
 
     @Override
     public Book getBookByIsbn(@PathParam("isbn") Long isbn) {
-        return bookDao.findByIsbn(isbn);
+        return bookRepository.findByIsbn(isbn);
     }
 
     @Override
     public Response deleteBookByIsbn(@PathParam("isbn") Long isbn) {
-        bookDao.deleteById(isbn);
+        Long isbnExistence = bookRepository.findByIsbn(isbn).getIsbn();
+        if(isbnExistence == null){
+            return Response.status(404).entity("ISBN not found").
+        }
+        bookRepository.deleteById(isbn);
         return Response.ok("Book with ISBN " + isbn + " Deleted Successfully.").build();
     }
 
     @Override
     public Response updateVintage(@PathParam("isbn") Long isbn, Book book) {
         book.setIsbn(isbn);
-        bookDao.save(book);
+        bookRepository.save(book);
         return Response.ok("Book with ISBN " +isbn+ " is updated. " ).build();
     }
 
