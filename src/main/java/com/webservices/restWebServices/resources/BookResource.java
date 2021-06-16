@@ -20,11 +20,18 @@ public class BookResource {
     private BookDao bookDao;
 
     @POST
-    @Consumes("application/json")
-    @Produces("application/json")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     @Path("/addBook")
-    public Book addBook(Book book) {
-        return bookDao.save(book);
+    public Response addBook(Book book) {
+        Book bookExists = bookDao.findByIsbn(book.getIsbn());
+        if(bookExists != null) {
+            return Response.noContent().build();
+        } else {
+            bookDao.save(book);
+            return Response.ok("Book with ISBN " + book.getIsbn() + " added successfully.").build();
+        }
+
     }
 
     @GET
