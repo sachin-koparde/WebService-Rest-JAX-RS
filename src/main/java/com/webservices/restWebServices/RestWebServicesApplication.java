@@ -7,23 +7,32 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.sql.DataSource;
 
+/*Write use the RESTful service to add, delete, update, and retrieve books from Bookstore.
+
+		POST: Add books to the bookstore
+		GET: Get books from the bookstore
+		PUT: Updates books to the bookstore
+		DELETE: Deletes books from the bookstore
+
+		Can use consume and produce both xml/json and handle error if any operation failed .
+
+		Sample book Json :
+		{
+		"isbn": "9390491622",
+		"name": "Java: The Complete Reference - 11th Edition",
+		"description": "The definitive guide to Java programming—thoroughly revised for long-term support release Java SE 11. Fully updated for the current version of Java, Java SE 11, This practical guide from Oracle press shows, step by step, how to design, write, troubleshoot, run, and maintain high-performance Java programs. Inside, bestselling author Herbert schildt covers the entire Java language, including its syntax, Keywords, and libraries. The book lays out cutting-edge programming techniques and best practices.",
+		"authorName": "Herbert Schildt",
+		"releaseDate": "10 December 2020",
+		"vintage": true,
+		"signed": true,
+		"price": 940
+		}
+
+		Create the required database tables and design the webservice.*/
+
+
 @SpringBootApplication
 public class RestWebServicesApplication {
-
-	@Autowired
-	private DataSource dataSource;
-
-	@Autowired
-	private BookRepository bookDao;
-
-//	@PostConstruct
-//	public void init() {
-//		bookDao.saveAll(Stream.of(
-//				new Book(91123876743L, "Learn Java", "Reference book to learn Java", "ABC", LocalDate.of(2008, Month.DECEMBER, 20), false, true, 200.0),
-//				new Book(27709876709L, "Playing It My Way", "Auto-biography by Sachin Tendulkar", "Sachin Tendulkar", LocalDate.of(2016, Month.APRIL, 24 ), false, true, 460.0),
-//				new Book(56312387873L, "Python in hand", "Learning Python", "XYZ", LocalDate.of(2012, Month.DECEMBER, 23), false, false, 180.0)
-//		).collect(Collectors.toList()));
-//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(RestWebServicesApplication.class, args);

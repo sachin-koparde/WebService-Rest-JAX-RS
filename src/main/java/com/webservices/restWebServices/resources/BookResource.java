@@ -10,6 +10,13 @@ import java.util.List;
 @Path("/")
 public interface BookResource {
 
+    /*The @Consumes annotation is used to specify which MIME media types of representations a resource can accept,
+    or consume, from the client. If @Consumes is applied at the class level, all the response methods accept the
+    specified MIME types by default.
+
+    The @Produces annotation is used to specify the MIME media types or representations a resource can produce
+    and send back to the client.If @Produces is applied at the class level, all the methods in a resource can
+    produce the specified MIME types by default.*/
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
