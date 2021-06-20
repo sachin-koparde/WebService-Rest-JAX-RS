@@ -42,12 +42,15 @@ public class BookResourceImpl implements BookResource{
 
     @Override
     public Response deleteBookByIsbn(@PathParam("isbn") Long isbn) {
-        Long isbnExistence = bookRepository.findByIsbn(isbn).getIsbn();
-        if(isbnExistence == null){
-            return Response.status(404).entity("ISBN not found").
-        }
-        bookRepository.deleteById(isbn);
-        return Response.ok("Book with ISBN " + isbn + " Deleted Successfully.").build();
+        Book isbnExistence = bookRepository.findByIsbn(isbn);
+        System.out.println(isbnExistence);
+//        if(isbnExistence == null){
+//            return Response.status(Response.Status.NOT_FOUND).entity("ISBN is not found").build();
+//        } else {
+            bookRepository.deleteById(isbn);
+            return Response.ok("Book with ISBN " + isbn + " Deleted Successfully.").build();
+//        }
+
     }
 
     @Override
