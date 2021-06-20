@@ -45,6 +45,6 @@ public interface BookResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/updateVintage/{isbn}")
-    Response updateVintage(@PathParam("isbn") Long isbn, Book book);
+    Response updateBook(@PathParam("isbn") Long isbn, Book book);
 
 }
